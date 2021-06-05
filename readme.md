@@ -1,4 +1,4 @@
-##Maak class circle
+## Maak class circle
 
 - om de 200 milisec nieuwe op scherm toveren
 - Mogen niet over de rand van het scherm komen.
