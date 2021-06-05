@@ -7,7 +7,7 @@
     "clean": "rm -rf ./dist ./.parcel-cache ./out",
     "build": "npm run clean && parcel build ./src/index.html --dist-dir ./out --no-source-maps && npm run serve",
     "serve": "live-server ./out",
-    "deploy": "surge ./out --domain https://fe-cc-circleclass.surge.sh"
+    "deploy": "surge ./out --domain https://fe-cc-circleclassv2.surge.sh"
   },
   "dependencies": {
     "randomcolor": "^0.6.2"
