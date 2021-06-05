@@ -1,5 +1,6 @@
 import randomColor from "randomcolor";
 import { randomNumber } from "./RandomNumber";
+import { circlesHtmlRef, updateCounter } from "../index";
 
 export default class Circle {
   #w;
@@ -9,25 +10,22 @@ export default class Circle {
   #x;
   #y;
   #radius;
-  #bgc;
-  #borderColor;
   #holder;
+  #clicked;
   //   #holder;
   constructor(holder) {
     this.#w = window.innerWidth;
     this.#h = window.innerHeight;
     this.#radius = randomNumber(50, 250);
-    console.log(this.#h);
-    console.log(this.#w);
     this.#maxW = this.#w - this.#radius;
     this.#maxH = this.#h - this.#radius;
     this.#x = randomNumber(0, this.#maxW);
     this.#y = randomNumber(0, this.#maxH);
-    this.#bgc = randomColor();
-    this.#borderColor = randomColor();
     this.#holder = holder;
     this.htmlRef = this.#generateHTML();
+    this.#clicked = 0;
     this.#setStyling();
+    this.#addEvent();
   }
   #generateHTML() {
     this.#holder.insertAdjacentHTML("beforeend", `<div class="circle"></div>`);
@@ -39,9 +37,29 @@ export default class Circle {
       top: this.#y + "px",
       width: this.#radius + "px",
       height: this.#radius + "px",
-      backgroundColor: this.#bgc,
-      borderColor: this.#borderColor,
+      backgroundColor: randomColor(),
+      borderColor: randomColor(),
     };
     Object.assign(this.htmlRef.style, styles);
+  }
+  #addEvent() {
+    this.htmlRef.onclick = (e) => {
+      e.stopPropagation();
+      const colorChange = {
+        backgroundColor: randomColor(),
+        borderColor: randomColor(),
+      };
+      Object.assign(this.htmlRef.style, colorChange);
+      this.#clicked++;
+      if (this.#clicked === 3) {
+        this.#deleteCircle(this.htmlRef);
+      }
+    };
+  }
+  #deleteCircle(ref) {
+    this.#holder.removeChild(ref);
+    const index = circlesHtmlRef.findIndex((el) => el === ref);
+    circlesHtmlRef.splice(index, 1);
+    updateCounter();
   }
 }
