@@ -10,3 +10,11 @@
 - giturl + surge aub
 
 https://fe-cc-circleclass.surge.sh/
+
+## Adding some other features
+
+- when clicking on screen, stop the circles from appearing, clicking on the screen again makes the circles continue to appear
+- when 100 circles are on the screen, clicking on a circle will change it's color & border-color
+- when clicking 3 times on the same circle, remove the circle
+
+https://fe-cc-circleclassv2.surge.sh/
